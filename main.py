@@ -13,6 +13,7 @@ class Main(QtWidgets.QMainWindow):
         self.tab1 = self.findChild(QtWidgets.QWidget, 'tab_chamber')
         self.but1 = self.findChild(QtWidgets.QPushButton, 'high_chamber_run')
         self.but1.clicked.connect(self.high_chamber_run)
+        #self.ui.show()
 
 
     @pyqtSlot()
