@@ -1,17 +1,50 @@
-import PyQt5
-import time
-
-log_dict = {'high_start': '고온챔버 동작을 시작합니다.',
-            'high_ready':'고온챔버 준비를 시작합니다.',
-            'high_end':'고온챔버 동작이 종료되었습니다.',
-            'low_free_interlock':'상온챔버 인터락 해제되었습니다.',
-            'low_start': '상온챔버 동작을 시작합니다.'}
+from PyQt5 import QtWidgets
+from PyQt5 import uic
+from PyQt5.QtCore import pyqtSlot
+import sys
 
 
-def log(action):
-    time_dic = time.localtime(time.time())
-    log_message = '[ {}:{}:{} ] {}'.format(time_dic.tm_hour, time_dic.tm_min, time_dic.tm_sec, log_dict[action])
-    print(log_message, end='')
+class Main(QtWidgets.QMainWindow):
+
+    def __init__(self):
+        QtWidgets.QMainWindow.__init__(self, parent=None)
+        self.ui = uic.loadUi('main_window.ui', self)
+        self.tab = self.findChild(QtWidgets.QTabWidget, "tabWidget")
+        self.tab1 = self.findChild(QtWidgets.QWidget, 'tab_chamber')
+        self.but1 = self.findChild(QtWidgets.QPushButton, 'high_chamber_run')
+        self.but1.clicked.connect(self.high_chamber_run)
 
 
-log('high_start')
+    @pyqtSlot()
+    def high_chamber_run(self):
+        print('Hello worlds')
+
+    @pyqtSlot()
+    def high_chamber_stop(self):
+        print('Hello worlds')
+
+    @pyqtSlot()
+    def room_chamber_run(self):
+        print('Hello worlds')
+
+    @pyqtSlot()
+    def room_chamber_stop(self):
+        print('Hello worlds')
+
+    @pyqtSlot()
+    def buzzer_stop(self):
+        print('Hello worlds')
+
+    @pyqtSlot()
+    def set_mode(self):
+        print('Hello worlds')
+
+    @pyqtSlot()
+    def slot1(self):
+        print('Hello worlds')
+
+
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    w = Main()
+    sys.exit(app.exec())
